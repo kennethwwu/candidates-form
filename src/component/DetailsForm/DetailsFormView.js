@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo, useEffect } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import { useForm } from "react-hook-form";
 import Input from '../Input'
 import Radio from '../Radio'
 import Select from '../Select'
 
-function DetailsFormView({ defaultValues, changeFormStatus }) {
+function DetailsFormView({ defaultValues, changeFormStatus, onSubmit }) {
     const { register, handleSubmit, watch, formState } = useForm({
         mode: 'onChange',
         defaultValues
@@ -13,8 +13,7 @@ function DetailsFormView({ defaultValues, changeFormStatus }) {
     const isEmployee = !!parseInt(watch("employed")); // subscribe to employed value changes
     const isError = !!Object.keys(errors).length //empty errors object
     const isReadToSave = useMemo(() => isDirty && !isError, [isDirty, isError]);
-    const onSubmit = useCallback(data => console.log(data), []);
-    useEffect(() => changeFormStatus(isReadToSave), [isReadToSave, isEmployee, changeFormStatus])
+    React.useEffect(() => changeFormStatus(isReadToSave), [isReadToSave, isEmployee, changeFormStatus])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -26,7 +25,7 @@ function DetailsFormView({ defaultValues, changeFormStatus }) {
             <Select name='state' label="State" ref={register({ required: true })} errors={errors}/>
             <Input name='desiredSalary' label="Desired Salary" ref={register({ required: true, pattern: /^[1-9][0-9]*$/i })} errors={errors} />
             {isEmployee && <Input name='currentSalary' label="Current Salary" ref={register({ required: true, pattern: /^[1-9][0-9]*$/i })} errors={errors} />}
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button data-testid="submit-btn" type="submit" className="btn btn-primary">Submit</button>
         </form >
     )
 }

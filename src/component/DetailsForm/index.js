@@ -18,13 +18,14 @@ function DetailsForm(props) {
     const [formData, setFormData] = useState(null)
     const { id } = useParams();
     const changeFormStatus = useCallback((status) => setIsReadToSave(status), [setIsReadToSave])
+    const onSubmit = useCallback(data => console.log(data), []);
     useEffect(()=>{
         setTimeout(() => setFormData(getUserById(id)), 1000) //simulate api call
     }, [id, setFormData, getUserById])
 
     return <>
             { formData
-                ?<DetailsFormView defaultValues={formData} changeFormStatus={changeFormStatus}/>
+                ?<DetailsFormView defaultValues={formData} changeFormStatus={changeFormStatus} onSubmit={onSubmit}/>
                 :<Loading/> }
             </>
 } 
