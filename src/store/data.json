@@ -1,0 +1,35 @@
+[
+    {
+        "id": "101",
+        "name": "Ken",
+        "jobId": "123",
+        "employed": "1",
+        "availability": "2021-03-26",
+        "email": "ken@example.com",
+        "state": "VIC",
+        "desiredSalary": "",
+        "currentSalary": "70000"
+    },
+    {
+        "id": "102",
+        "name": "Sam",
+        "jobId": "123",
+        "employed": "0",
+        "availability": "2021-02-20",
+        "email": "sam@example.com",
+        "state": "SA",
+        "desiredSalary": "90000",
+        "currentSalary": ""
+    },
+    {
+        "id": "103",
+        "name": "Bill",
+        "jobId": "123",
+        "employed": "1",
+        "availability": "2021-04-03",
+        "email": "",
+        "state": "NSW",
+        "desiredSalary": "",
+        "currentSalary": ""
+    }
+]
