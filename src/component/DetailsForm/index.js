@@ -18,7 +18,7 @@ function DetailsForm(props) {
     const [formData, setFormData] = useState(null)
     const { id } = useParams();
     const changeFormStatus = useCallback((status) => setIsReadToSave(status), [setIsReadToSave])
-    const onSubmit = useCallback(data => console.log(data), []);
+    const onSubmit = useCallback(data => alert('user data saved'), []);
     useEffect(()=>{
         setTimeout(() => setFormData(getUserById(id)), 1000) //simulate api call
     }, [id, setFormData, getUserById])
