@@ -1,5 +1,5 @@
 
-### `npm start`
+### `npm install`
 
 Install dependencies
 
