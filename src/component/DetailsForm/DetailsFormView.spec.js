@@ -7,30 +7,24 @@ describe('DetailsFormView', () => {
     const mockOnSubmit = jest.fn(); 
 
     beforeAll(async () => {
-        await act(async () => render(<DetailsFormView defaultValues={data[0]} changeFormStatus={mockChangeFormStatus} onSubmit={mockOnSubmit}/>))
+        await act(async () => render(<DetailsFormView defaultValues={data[2]} changeFormStatus={mockChangeFormStatus} onSubmit={mockOnSubmit}/>))
     })
 
     test('name input', () => {
         const { getByDisplayValue } = screen
-        const nameInput = getByDisplayValue('Ken')
+        const nameInput = getByDisplayValue('Bill')
         expect(nameInput).toBeTruthy();
-    })
-
-    test('email input', () => {
-        const { getByDisplayValue } = screen
-        const emailInput = getByDisplayValue('ken@example.com')
-        expect(emailInput).toBeTruthy();
     })
 
     test('status select', () => {
         const { getByDisplayValue } = screen
-        const select = getByDisplayValue('VIC')
+        const select = getByDisplayValue('NSW')
         expect(select).toBeTruthy();
     })
 
     test('date picker', () => {
         const { getByDisplayValue } = screen
-        const datePicker = getByDisplayValue('2021-03-26')
+        const datePicker = getByDisplayValue('2021-04-03')
         expect(datePicker).toBeTruthy();
     })
 
@@ -42,12 +36,11 @@ describe('DetailsFormView', () => {
         expect(mockOnSubmit).toBeCalledTimes(0);
     })
 
-    test('add value in Desired Salary input', async () => {
-        const { getByDisplayValue } = screen
-        const desiredSalaryInput = getByDisplayValue('')
-        expect(desiredSalaryInput).toBeTruthy();
-        await act( async () => fireEvent.change(desiredSalaryInput, { target: { value: "123"}}))
-        expect(desiredSalaryInput.value).toBe('123')
+    test('email input', async () => {
+        const { getByTestId } = screen
+        const emailInput = getByTestId('email-input')
+        expect(emailInput).toBeTruthy();
+        await act( async () => fireEvent.change(emailInput, { target: { value: "bill@example.com"}}))
     })
 
     test('submit form success', async () => {
