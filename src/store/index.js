@@ -8,7 +8,8 @@ const createStore = (initial = data) => ({ children }) => {
     const [users, setUsers] = useState(initial)
 
     const getUserById = useCallback( id => {
-        return users.find(user => user.id === id)
+        const user = users.find(user => user.id === id)
+        return user?{...user}:{}
     }, [users])
 
     return (
